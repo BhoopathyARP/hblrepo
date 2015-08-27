@@ -1,6 +1,6 @@
 language: java
 script : ant main
-deploy:
+
 provider: cloudfoundry
 target: https://api.de.a9s.eu
 username: lakshmanakumar.duraipandi@one.verizon.com
