@@ -1,2 +1,2 @@
 language: java
-script : ant IPM_Hackers/build.xml
+script : ant main
