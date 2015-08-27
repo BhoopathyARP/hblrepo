@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="IPM_Hackers" basedir="IPM_Hackers" default="main">
-	<mkdir dir="classes"/>
-	<mkdir dir="dist"/>
+	<mkdir dir="IPM_Hackers/classes"/>
+	<mkdir dir="IPM_Hackers/dist"/>
 	<target name="compile">
 		<javac debug="true" srcdir="IPM_Hackers/src" destdir="IPM_Hackers/classes" includeantruntime="true"/>
 	</target>
