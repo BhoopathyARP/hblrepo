@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="IPM_Hackers" basedir="." default="main">
+	<mkdir dir="classes"/>
+	<mkdir dir="dist"/>
+	<target name="compile">
+		<javac debug="true" srcdir="src" destdir="classes" includeantruntime="true"/>
+	</target>
+	
+	<target name="war" depends="compile">
+			<war destfile="IPMHackers.war" webxml="WebContent/WEB-INF/web.xml" basedir="dist" >
+			</war>
+		</target>
+	
+	
+	<target name="main" depends="war">
+	</target>
+	
+</project>
