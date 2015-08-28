@@ -94,7 +94,7 @@ public class IncludeTest {
 		String result = Include.Table_start();
 
 		// add additional test code here
-		assertEquals("<TABLE cellSpacing=\"0\" cellPadding=\"0\" width=\"90%\" bgColor=\"#336699\" border=\"0\" align=\"center\">\n<TR>\n<TD>\n<TABLE cellSpacing=\"1\" cellPadding=\"4\" width=\"100%\" border=\"0\">\n<TR bgColor=\"#ccccff\">\n", result);
+		assertEquals("<TABLE cellSpacing=\"0\" cellPadding=\"0\" width=\"90%\" bgColor=\"#336699\" border=\"0\" align=\"center\">\n<TR>\n<TD>\n<TABLE cellSpacing=\"1\" cellPadding=\"8\" width=\"100%\" border=\"0\">\n<TR bgColor=\"#FFFF99\">\n", result);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class IncludeTest {
 		String result = Include.Table_start_title();
 
 		// add additional test code here
-		assertEquals("<TR bgColor=#ccccff>", result);
+		assertEquals("<TR bgColor=#FFFF99>", result);
 	}
 
 	/**
