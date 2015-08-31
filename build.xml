@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Vz Tech Connect" basedir="VzTechConnect" default="main">
+<project name="Vz Tech Connect" basedir="VzTechConnect" default="main" xmlns:jacoco="antlib:org.jacoco.ant">
+
+	 <property name="junitreports" location="WebContent/junitreports"/>
+	 <property name="result.report.unit.dir" location="WebContent/coverage-reports"/>
+     <property name="result.exec.unit.file" location="jacoco-unit.exec"/>
+
+        <!-- Step 1: Import JaCoCo Ant tasks -->
+        <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+                <classpath path="${web.dir}/WEB-INF/lib/jacocoant.jar" />
+        </taskdef>
+
 	<path id="master-classpath">
 		<fileset dir="WebContent/WEB-INF/lib">
 			<include name="*.jar" />
@@ -8,12 +18,12 @@
 	</path>
 
 	<target name="clean">
-		<delete dir="WebContent/WEB-INF/classes">
-		</delete>
-		<delete dir="dist">
-		</delete>
+		<delete dir="WebContent/WEB-INF/classes"/>
+		<delete dir="dist" />
 		<mkdir dir="WebContent/WEB-INF/classes" />
 		<mkdir dir="dist" />
+		<mkdir dir="${junitreports}" />
+		<mkdir dir="${result.report.unit.dir}" />
 	</target>
 
 	<target name="compile" depends="clean">
@@ -25,7 +35,7 @@
 		</javac>
 	</target>
 
-	<target name="war" depends="junit">
+	<target name="war" depends="junit-reports">
 		<war destfile="dist/VzTechConnect.war" webxml="WebContent/WEB-INF/web.xml" basedir="dist">
 		</war>
 	</target>
@@ -53,6 +63,37 @@
 			</batchtest>
 		</junit>
 	</target>
+	
+	
+	 <target name="junit-reports" depends="junit">
+                <!-- Unit Test Report Generation -->
+                <junitreport tofile="TESTS-TestSuites.xml" todir="${junitreports}">
+                        <fileset dir="${junitreports}">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                        <report format="frames" todir="${junitreports}" />
+                </junitreport>
+
+                <!-- Generating coverage report for unit testcases -->
+                <jacoco:report>
+                        <!-- This task needs the collected execution data and ... -->
+                        <executiondata>
+                                <file file="${result.exec.unit.file}" />
+                        </executiondata>
+                        <!-- the class files and optional source files ... -->
+                        <structure name="Verizon Tech Connect Unit Testcase Code Coverage">
+                                <classfiles>
+                                        <fileset dir="WebContent/WEB-INF/classes" />
+                                </classfiles>
+                                <sourcefiles encoding="UTF-8">
+                                        <fileset dir="src" />
+                                </sourcefiles>
+                        </structure>
+                        <!-- to produce reports in different formats. -->
+                        <html destdir="${result.report.unit.dir}" />
+                </jacoco:report>
+        </target>
+
 
 	<target name="main" depends="war">
 
