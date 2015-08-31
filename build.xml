@@ -36,7 +36,7 @@
 
 	<target name="junit" depends="compile">
 		<mkdir dir="junitReports" />
-		<junit printsummary="yes" haltonfailure="yes" haltonerror="yes" fork="true">
+		<junit printsummary="no" haltonfailure="yes" haltonerror="yes" fork="true">
 			<classpath refid="junit.class.path" />
 			<classpath>
 				<pathelement location="WebContent/WEB-INF/classes" />
