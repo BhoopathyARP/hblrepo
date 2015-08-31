@@ -35,7 +35,7 @@
 		</javac>
 	</target>
 
-	<target name="war" depends="junit-reports">
+	<target name="war" depends="junit"">
 		<war destfile="dist/VzTechConnect.war" webxml="WebContent/WEB-INF/web.xml" basedir="dist">
 		</war>
 	</target>
@@ -63,37 +63,6 @@
 			</batchtest>
 		</junit>
 	</target>
-	
-	
-	 <target name="junit-reports" depends="junit">
-                <!-- Unit Test Report Generation -->
-                <junitreport tofile="TESTS-TestSuites.xml" todir="${junitreports}">
-                        <fileset dir="${junitreports}">
-                                <include name="TEST-*.xml" />
-                        </fileset>
-                        <report format="frames" todir="${junitreports}" />
-                </junitreport>
-
-                <!-- Generating coverage report for unit testcases -->
-                <jacoco:report>
-                        <!-- This task needs the collected execution data and ... -->
-                        <executiondata>
-                                <file file="${result.exec.unit.file}" />
-                        </executiondata>
-                        <!-- the class files and optional source files ... -->
-                        <structure name="Verizon Tech Connect Unit Testcase Code Coverage">
-                                <classfiles>
-                                        <fileset dir="WebContent/WEB-INF/classes" />
-                                </classfiles>
-                                <sourcefiles encoding="UTF-8">
-                                        <fileset dir="src" />
-                                </sourcefiles>
-                        </structure>
-                        <!-- to produce reports in different formats. -->
-                        <html destdir="${result.report.unit.dir}" />
-                </jacoco:report>
-        </target>
-
 
 	<target name="main" depends="war">
 
