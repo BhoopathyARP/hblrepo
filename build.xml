@@ -35,7 +35,7 @@
 		</javac>
 	</target>
 
-	<target name="war" depends="junit"">
+	<target name="war" depends="junit">
 		<war destfile="dist/VzTechConnect.war" webxml="WebContent/WEB-INF/web.xml" basedir="dist">
 		</war>
 	</target>
